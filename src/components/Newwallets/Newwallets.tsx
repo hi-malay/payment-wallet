@@ -186,7 +186,7 @@ class PartnerReferral extends React.Component<any,
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
                     <h3 className="modal-title">Hi, </h3>
-                    <h3 className="modal-subtitle"> Your data is being submitted (this is just a message)</h3>
+                    <h3 className="modal-subtitle">Data successfully submitted <br />(Please don't take this serious)</h3>
 
                     <DialogActions>
                         <Button onClick={this.handleCloseSub} color="primary">

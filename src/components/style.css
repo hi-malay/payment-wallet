@@ -28,10 +28,15 @@
 .MuiPaper-root.MuiTableContainer-root {
     min-width: 800px !important;
     margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.12)
 }
 
 .MuiTypography-h5.main-title {
     color: #00b464 !important;
+}
+
+.MuiCardContent-root {
+    border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .MuiPaper-root.MuiCard-root {
