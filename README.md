@@ -1,6 +1,6 @@
 ## Full Throttle Labs Assignment
 
-Demo link: "https://hi-malay.github.io/datePicker/"
+### Demo link: "https://hi-malay.github.io/datePicker/"
 
 
 ## Steps to run this repo:
