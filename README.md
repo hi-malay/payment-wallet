@@ -8,6 +8,7 @@
 2. cd payment-wallet
 3. npm install
 4. npm start
+5. go to: http://localhost:3000/main/login on browser
 
 ### Json File User: https://my-json-server.typicode.com/hi-malay/json/db
 
