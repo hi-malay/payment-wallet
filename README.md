@@ -9,9 +9,9 @@ Demo link: "https://hi-malay.github.io/datePicker/"
 3. npm install
 4. npm start
 
-# Json File User: https://my-json-server.typicode.com/hi-malay/json/db
+### Json File User: https://my-json-server.typicode.com/hi-malay/json/db
 
-# Json File Transaction: https://my-json-server.typicode.com/hi-malay/trans/db
+### Json File Transaction: https://my-json-server.typicode.com/hi-malay/trans/db
 
 Payment Wallet app lets you:
 1. Check balance
