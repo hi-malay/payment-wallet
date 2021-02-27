@@ -154,4 +154,13 @@ div.max-width.max-width-padd {
     .bg-grey {
         background: #fff;
     }
+
+    .max-width-in {
+        padding-left: unset;
+    }
+
+    .MuiPaper-root.MuiTableContainer-root {
+        min-width: unset !important;
+    }
+
 }
