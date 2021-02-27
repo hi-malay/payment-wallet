@@ -61,28 +61,6 @@ class PartnerReferral extends React.Component<any,
             return;
         }
         this.setState({ date_match_modal: true })
-        // let apiService = new Api(getDefaultHeaders());
-        // const userReferralDetails: any = {
-        //     "name": this.state.name,
-        //     "email": this.state.email,
-        //     "contact": this.state.mobileNumber,
-        //     "product": this.state.checkboxArray,
-        //     "company_name": this.state.companyName,
-        //     "remarks": this.state.remark
-        // }
-        // this.setState({ isBtnLoading: true })
-        // apiService.post(API_URL.refer_lead, userReferralDetails).then((response: any) => {
-        //     this.setState({ sendReferralDialog: true, isBtnLoading: false })
-        //     this.checkRefer()
-        // }).catch((error: any) => {
-        //     if (error.response.status === 400) {
-        //         this.setState({ emailError: true, emailErrorLabel: PAGE_TWO_ERROR_TEXT.emailRegisteredLabel, saveDetailsEnable: false, isBtnLoading: false })
-        //     }
-        //     else {
-        //         this.setState({ sendReferralFailedDialog: true, isBtnLoading: false })
-        //     }
-        // });
-
     }
 
 

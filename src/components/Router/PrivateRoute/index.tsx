@@ -43,16 +43,14 @@ export default function PrivateRoute(props: any) {
         <Route render={() =>
             <div className="bg-grey full-len mt-3" >
                 <ContextMain.Provider value={userData}>
-
-                    <div className="row max-width">
-                        <Card>
+                    <div className="max-width max-width-padd mt-4">
+                        <Card className="custom-card card-dashboard">
                             <CardContent >
                                 <h2>{props.location.pathname.split("/")[1]}</h2>
                                 <div className="col-md-4">
                                     <Drawer />
                                 </div>
                                 <div className="col-md-8 mt-5">
-
                                     <props.component value={transData} />
                                 </div>
                             </CardContent>
