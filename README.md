@@ -1,6 +1,6 @@
 ## Full Throttle Labs Assignment
 
-### Demo link: "https://hi-malay.github.io/datePicker/"
+### Demo link: "https://hi-malay.github.io/template"
 
 
 ## Steps to run this repo:
@@ -8,6 +8,7 @@
 2. cd payment-wallet
 3. npm install
 4. npm start
+5. go to: http://localhost:3000/main/login on browser
 
 ### Json File User: https://my-json-server.typicode.com/hi-malay/json/db
 
