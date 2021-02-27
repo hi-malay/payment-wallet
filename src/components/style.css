@@ -144,11 +144,27 @@ div.max-width.max-width-padd {
     padding: 0 20px;
 }
 
+.drawer-visible-xs {
+    display: none !important;
+}
+
 @media (max-width: 991px) {
+    .drawer-visible-xs {
+        display: inline-flex !important;
+    }
+
     .custom-card.card-dashboard .card-bg-grey-user {
         width: 100%;
         height: auto;
         padding: 15px 15px;
+    }
+
+    .custom-horizontal-tab.visible-xs {
+        display: flex !important;
+    }
+
+    .visible-xs {
+        display: block;
     }
 
     .bg-grey {

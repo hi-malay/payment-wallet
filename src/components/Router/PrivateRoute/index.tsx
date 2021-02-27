@@ -9,10 +9,13 @@ import "../../style.css"
 import { ContextMain } from "./../../common/Drawer/ContextMain"
 import axios from "axios"
 import { API } from '../../common/Drawer/constant';
+import MenuIcon from '@material-ui/icons/Menu';
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 export default function PrivateRoute(props: any) {
     const [userData, setUserData] = React.useState({});
     const [transData, setTransData] = React.useState({});
-
+    const [isDrawerOpen, setDrawer] = React.useState(false);
     const mainApi = () => {
         axios.get(API.main_url).then((response: any) => {
             if (response.data) {
@@ -42,6 +45,7 @@ export default function PrivateRoute(props: any) {
     return (
         <Route render={() =>
             <div className="bg-grey full-len mt-3" >
+
                 <ContextMain.Provider value={userData}>
                     <div className="max-width max-width-padd mt-4">
                         <Card className="custom-card card-dashboard">
