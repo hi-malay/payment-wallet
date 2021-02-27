@@ -4,6 +4,7 @@
 
 .btn-class.MuiButton-root {
     border: unset !important;
+    outline: unset !important;
     font-family: "Roboto", sans-serif;
     font-size: 1rem;
     font-weight: 500;
@@ -51,6 +52,7 @@
 .btn-class-default.MuiButton-root {
     border: unset !important;
     font-family: "Roboto", sans-serif;
+    outline: unset !important;
     font-size: 1rem;
     font-weight: 500;
     min-width: 150px;
@@ -60,6 +62,10 @@
     color: #000;
     box-shadow: unset;
     text-transform: none;
+}
+
+.MuiFormHelperText-root {
+    color: red !important;
 }
 
 .MuiTypography-root.MuiListItemText-primary.MuiTypography-body1 {

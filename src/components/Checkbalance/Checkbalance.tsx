@@ -55,7 +55,7 @@ class Checkbalance extends React.Component<any,
     };
     validationDynamic = () => {
         if (this.state.name === "") {
-            this.setState({ nameError: true, nameErrorLabel: PAGE_TWO_ERROR_TEXT.firstNameLabel, saveDetailsEnable: false })
+            this.setState({ nameError: true, nameErrorLabel: PAGE_TWO_ERROR_TEXT.selectErrorLabel, saveDetailsEnable: false })
             return
         }
 
@@ -66,9 +66,6 @@ class Checkbalance extends React.Component<any,
             return null
         })
         this.setState({ matchData: matchData, date_match_modal: true })
-
-
-
     }
 
     render() {
@@ -113,7 +110,7 @@ class Checkbalance extends React.Component<any,
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
                     <h3 className="modal-title">Hi, </h3>
-                    <h3 className="modal-subtitle"> Your balance is: <b>{this.state.matchData} Rs</b></h3>
+                    <h3 className="modal-subtitle"> Your balance is: <b>{this.state.matchData}</b></h3>
 
                     <DialogActions>
                         <Button onClick={this.handleCloseSub} color="primary">

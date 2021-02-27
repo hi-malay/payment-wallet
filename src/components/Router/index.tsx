@@ -30,18 +30,15 @@ class CustomRouter extends React.Component<any, {
     }
     render() {
         return (
-            <Router basename="/main">
+            <Router basename="/template">
                 <Switch>
-                    <Route exact path="/" render={() => <Redirect to={{
-                        pathname: `/login`,
-                    }} />} />
                     <PrivateRoute path="/all-wallet" component={Allwallets} />
                     <PrivateRoute path="/new-wallet" component={Newwallets} />
                     <PrivateRoute path="/check-balance" component={Checkbalance} />
                     <PrivateRoute path="/add-funds" component={Addfunds} />
                     <PrivateRoute path="/spend-funds" component={Spendfunds} />
                     <PrivateRoute path="/all-trans" component={Alltrans} />
-                    <Route path="/login" component={Login} />
+                    <Route path="/" component={Login} />
                 </Switch>
             </Router>
         );

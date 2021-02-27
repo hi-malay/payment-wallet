@@ -60,7 +60,7 @@ class Addfunds extends React.Component<any,
     };
     validationDynamic = () => {
         if (this.state.name === "") {
-            this.setState({ nameError: true, nameErrorLabel: PAGE_TWO_ERROR_TEXT.firstNameLabel, saveDetailsEnable: false })
+            this.setState({ nameError: true, nameErrorLabel: PAGE_TWO_ERROR_TEXT.selectErrorLabel, saveDetailsEnable: false })
             return
         }
         else if (this.state.amount?.length === 0) {
