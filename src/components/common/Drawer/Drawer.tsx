@@ -97,7 +97,7 @@ function ResponsiveDrawer(props: any) {
             <Divider />
             <List className='custom-list' >
                 <Link to={`/all-wallet`} className="click-history">
-                    <div onClick={() => (setSelect(1))}>
+                    <div onClick={() => (setMobileOpen(false))}>
                         <ListItem button className={(select === 1) ? "active" : ''}>
                             <ListItemIcon> <ArrowRightIcon /></ListItemIcon>
                             <ListItemText primary={"All Wallets"} />
@@ -106,7 +106,7 @@ function ResponsiveDrawer(props: any) {
 
                 </Link>
                 <Link to={`/new-wallet`} className="click-history">
-                    <div onClick={() => (setSelect(2))}>
+                    <div onClick={() => (setMobileOpen(false))}>
                         <ListItem button className={(select === 2) ? "active" : ''}>
                             <ListItemIcon> <ArrowRightIcon /></ListItemIcon>
                             <ListItemText primary={"New Wallet"} />
@@ -114,7 +114,7 @@ function ResponsiveDrawer(props: any) {
                     </div>
                 </Link>
                 <Link to={`/check-balance`} className="click-history">
-                    <div onClick={() => (setSelect(3))}>
+                    <div onClick={() => (setMobileOpen(false))}>
                         <ListItem button className={(select === 3) ? "active" : ''}>
                             <ListItemIcon> <ArrowRightIcon /></ListItemIcon>
                             <ListItemText primary={"Check Balance"} />
@@ -122,7 +122,7 @@ function ResponsiveDrawer(props: any) {
                     </div>
                 </Link>
                 <Link to={`/add-funds`} className="click-history">
-                    <div onClick={() => (setSelect(4))}>
+                    <div onClick={() => (setMobileOpen(false))}>
                         <ListItem button className={(select === 4) ? "active" : ''}>
                             <ListItemIcon> <ArrowRightIcon /></ListItemIcon>
                             <ListItemText primary={"Add Funds"} />
@@ -130,7 +130,7 @@ function ResponsiveDrawer(props: any) {
                     </div>
                 </Link>
                 <Link to={`/spend-funds`} className="click-history">
-                    <div onClick={() => (setSelect(5))}>
+                    <div onClick={() => (setMobileOpen(false))}>
                         <ListItem button className={(select === 5) ? "active" : ''}>
                             <ListItemIcon> <ArrowRightIcon /></ListItemIcon>
                             <ListItemText primary={"Spend Funds"} />
@@ -138,7 +138,7 @@ function ResponsiveDrawer(props: any) {
                     </div>
                 </Link>
                 <Link to={`/all-trans`} className="click-history">
-                    <div onClick={() => (setSelect(6))}>
+                    <div onClick={() => (setMobileOpen(false))}>
                         <ListItem button className={(select === 6) ? "active" : ''}>
                             <ListItemIcon> <ArrowRightIcon /></ListItemIcon>
                             <ListItemText primary={"All Transactions"} />
