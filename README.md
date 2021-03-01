@@ -1,4 +1,4 @@
-## Date Picker
+## Payment Wallet
 
 ### Demo link: "https://hi-malay.github.io/template"
 
