@@ -1,4 +1,4 @@
-## Full Throttle Labs Assignment
+## Payment Wallet
 
 ### Demo link: "https://hi-malay.github.io/template"
 
