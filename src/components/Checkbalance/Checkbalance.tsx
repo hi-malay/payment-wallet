@@ -60,8 +60,8 @@ class Checkbalance extends React.Component<any,
         }
 
         const matchData = this.context.map((data: any) => {
-            if (data.UserId === this.state.name) {
-                return data.Balance
+            if (data._id === this.state.name) {
+                return data.amount
             }
             return null
         })
@@ -86,7 +86,7 @@ class Checkbalance extends React.Component<any,
                                 </MenuItem>
                                 {this.context.length !== undefined
                                     ? this.context.map((row: any, i: any) => (
-                                        <MenuItem value={row.UserId}>{row.Name}</MenuItem>
+                                        <MenuItem value={row._id}>{row.name}</MenuItem>
                                     ))
                                     : (<CircularProgress color="inherit" size={30} className="table-loader" />)
                                 }

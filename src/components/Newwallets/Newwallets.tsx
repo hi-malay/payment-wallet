@@ -6,6 +6,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import { PAGE_TWO_ERROR_TEXT } from './../common/Drawer/constant';
 import { isMobileValidNumber } from './../common/Drawer/Helperfunction';
+import axios from "axios"
+import { API } from './../common/Drawer/constant';
 
 class PartnerReferral extends React.Component<any,
     {
@@ -61,6 +63,18 @@ class PartnerReferral extends React.Component<any,
             return;
         }
         this.setState({ date_match_modal: true })
+
+        let data: any = {
+            "name": this.state.name,
+            "phone": this.state.mobileNumber,
+            "amount": this.state.amount
+        };
+
+        axios.post(API.add_user, data).then((response: any) => {
+            console.log("ok")
+        }).catch((error: any) => {
+            console.log("error", error)
+        });
     }
 
 
@@ -164,7 +178,7 @@ class PartnerReferral extends React.Component<any,
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
                     <h3 className="modal-title">Hi, </h3>
-                    <h3 className="modal-subtitle">Data successfully submitted <br />(Please don't take this serious)</h3>
+                    <h3 className="modal-subtitle">Data successfully submitted </h3>
 
                     <DialogActions>
                         <Button onClick={this.handleCloseSub} color="primary">

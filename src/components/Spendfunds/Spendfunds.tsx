@@ -14,8 +14,10 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { ContextMain } from "./../common/Drawer/ContextMain"
+import axios from "axios"
+import { API } from './../common/Drawer/constant';
 
-class Addfunds extends React.Component<any,
+class SpendFunds extends React.Component<any,
     {
         name: string,
         nameError: boolean,
@@ -69,12 +71,22 @@ class Addfunds extends React.Component<any,
         }
 
         const matchData = this.context.map((data: any) => {
-            if (data.UserId === this.state.name) {
-                return data.Name
+            if (data._id === this.state.name) {
+                return data.name
             }
             return null
         })
         this.setState({ matchData: matchData, date_match_modal: true })
+
+        let data: any = {
+            amount: this.state.amount
+        }
+
+        axios.patch(API.spend_funds + "/" + this.state.name, data).then((response: any) => {
+            console.log("ok")
+        }).catch((error: any) => {
+            console.log("error", error)
+        });
 
     }
 
@@ -117,7 +129,7 @@ class Addfunds extends React.Component<any,
                                         </MenuItem>
                                         {this.context.length !== undefined
                                             ? this.context.map((row: any, i: any) => (
-                                                <MenuItem value={row.UserId}>{row.Name}</MenuItem>
+                                                <MenuItem value={row._id}>{row.name}</MenuItem>
                                             ))
                                             : (<CircularProgress color="inherit" size={30} className="table-loader" />)
                                         }
@@ -163,7 +175,7 @@ class Addfunds extends React.Component<any,
                     aria-labelledby="alert-dialog-title"
                     aria-describedby="alert-dialog-description">
                     <h3 className="modal-title">Success </h3>
-                    <h3 className="modal-subtitle"> Amount <b>{amount}</b> ₹ added to <b>{matchData}'s</b> wallet</h3>
+                    <h3 className="modal-subtitle"> Amount <b>{amount}</b> ₹ debited from <b>{matchData}'s</b> wallet</h3>
 
                     <DialogActions>
                         <Button onClick={this.handleCloseSub} color="primary">
@@ -175,5 +187,5 @@ class Addfunds extends React.Component<any,
         );
     }
 }
-Addfunds.contextType = ContextMain
-export default Addfunds;
+SpendFunds.contextType = ContextMain
+export default SpendFunds;

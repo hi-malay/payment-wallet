@@ -19,12 +19,11 @@ export default function PrivateRoute(props: any) {
     const mainApi = () => {
         axios.get(API.main_url).then((response: any) => {
             if (response.data) {
-                setUserData(response.data.data)
-                console.log("byr", response.data.data)
+                setUserData(response.data.user)
+                console.log("byr2", response.data.user)
             }
         }).catch((error: any) => {
             console.log("error", error)
-
         });
 
         axios.get(API.trans_url).then((response: any) => {
@@ -40,7 +39,7 @@ export default function PrivateRoute(props: any) {
 
     useEffect(() => {
         mainApi()
-    }, [])
+    }, [props.location.pathname])
 
     return (
         <Route render={() =>

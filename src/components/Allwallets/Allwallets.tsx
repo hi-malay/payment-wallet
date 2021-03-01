@@ -64,22 +64,22 @@ class Allwallets extends React.Component<any,
                             <TableHead>
                                 <TableRow>
                                     <TableCell><b>UserId</b></TableCell>
-                                    <TableCell align="right"><b>Name</b></TableCell>
-                                    <TableCell align="right"><b>Phone</b></TableCell>
-                                    <TableCell align="right"><b>Balance</b></TableCell>
+                                    <TableCell align="left"><b>Name</b></TableCell>
+                                    <TableCell align="left"><b>Phone</b></TableCell>
+                                    <TableCell align="left"><b>Balance</b></TableCell>
 
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {this.context.length !== undefined
-                                    ? (<> {this.context.map((row: any) => (
-                                        <TableRow key={row.UserId}>
+                                    ? (<> {this.context.map((row: any, i: any) => (
+                                        <TableRow key={row._id}>
                                             <TableCell component="th" scope="row">
-                                                {row.UserId}
+                                                User{i + 1}
                                             </TableCell>
-                                            <TableCell align="right">{row.Name}</TableCell>
-                                            <TableCell align="right">{row.Phone}</TableCell>
-                                            <TableCell align="right">{row.Balance}</TableCell>
+                                            <TableCell align="left">{row.name}</TableCell>
+                                            <TableCell align="left">{row.phone}</TableCell>
+                                            <TableCell align="left">{row.amount} ₹</TableCell>
                                         </TableRow>
                                     ))}</>)
                                     : (<> <CircularProgress color="inherit" size={30} className="table-loader" /></>)
