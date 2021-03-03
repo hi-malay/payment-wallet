@@ -15,7 +15,6 @@ import IconButton from '@material-ui/core/IconButton';
 export default function PrivateRoute(props: any) {
     const [userData, setUserData] = React.useState({});
     const [transData, setTransData] = React.useState({});
-    const [isDrawerOpen, setDrawer] = React.useState(false);
     const mainApi = () => {
         axios.get(API.main_url).then((response: any) => {
             if (response.data) {
