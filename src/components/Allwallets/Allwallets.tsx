@@ -84,7 +84,6 @@ class Allwallets extends React.Component<any,
                                     ))}</>)
                                     : (<> <CircularProgress color="inherit" size={30} className="table-loader" /></>)
                                 }
-
                             </TableBody>
                         </Table>
                     </TableContainer>
