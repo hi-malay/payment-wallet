@@ -39,27 +39,33 @@ export default function PrivateRoute(props: any) {
     useEffect(() => {
         mainApi()
     }, [props.location.pathname])
+    if (localStorage.getItem('AuthToken') !== null && localStorage.getItem('AuthToken') !== undefined) {
+        return (
+            <Route render={() =>
+                <div className="bg-grey full-len mt-3" >
 
+                    <ContextMain.Provider value={userData}>
+                        <div className="max-width max-width-padd mt-4">
+                            <Card className="custom-card card-dashboard">
+                                <CardContent >
+                                    <h2>{props.location.pathname.split("/")[1]}</h2>
+                                    <div className="col-md-4">
+                                        <Drawer />
+                                    </div>
+                                    <div className="col-md-8 mt-5">
+                                        <props.component value={transData} />
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+                    </ContextMain.Provider>
+                </ div>} />
+        )
+    }
     return (
-        <Route render={() =>
-            <div className="bg-grey full-len mt-3" >
-
-                <ContextMain.Provider value={userData}>
-                    <div className="max-width max-width-padd mt-4">
-                        <Card className="custom-card card-dashboard">
-                            <CardContent >
-                                <h2>{props.location.pathname.split("/")[1]}</h2>
-                                <div className="col-md-4">
-                                    <Drawer />
-                                </div>
-                                <div className="col-md-8 mt-5">
-                                    <props.component value={transData} />
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-                </ContextMain.Provider>
-            </ div>} />
+        <Redirect to={{
+            pathname: `/`,
+        }} />
     )
 
 }

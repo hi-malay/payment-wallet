@@ -2,7 +2,9 @@ export const PAGE_TWO_ERROR_TEXT = {
     'firstNameLabel': "Invalid First Name.",
     'amountLabel': "Invalid Company Name.",
     'mobileNumberLabel': "Invalid Mobile Number.",
-    "selectErrorLabel": "No name selected"
+    "selectErrorLabel": "No name selected",
+    "emailLabel": "Invalid email",
+    "passwordLabel": "Invalid password"
 
 }
 
@@ -13,4 +15,6 @@ export const API = {
     "get_funds_id": "http://localhost:5000/api/user",
     "add_user": "http://localhost:5000/api/user/add",
     "trans_url": "https://my-json-server.typicode.com/hi-malay/trans/db",
+    "signup_url": "http://localhost:5000/api/auth/signup",
+    "login_url": "http://localhost:5000/api/auth/login"
 }

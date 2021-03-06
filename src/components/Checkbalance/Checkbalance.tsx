@@ -69,6 +69,7 @@ class Checkbalance extends React.Component<any,
     }
 
     render() {
+        console.log("hi", localStorage.getItem('AuthToken'))
         return (
             <div className="check-funds">
                 <div className="row menu-tab">
