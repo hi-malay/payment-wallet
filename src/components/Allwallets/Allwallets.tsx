@@ -20,6 +20,7 @@ class Allwallets extends React.Component<any,
         amountErrorLabel: string,
         saveDetailsEnable: boolean,
         date_match_modal: boolean,
+        refDet: any
 
     }> {
 
@@ -35,25 +36,18 @@ class Allwallets extends React.Component<any,
             amountError: false,
             amountErrorLabel: '',
             saveDetailsEnable: true,
-            date_match_modal: false
+            date_match_modal: false,
+            refDet: {}
         }
 
     }
 
-
+    componentDidMount = () => {
+        this.setState({ refDet: this.context })
+    }
 
     render() {
-        const rows = [
-            {
-                "UserId": "usr1", "Name": "Malay", "Phone": "31231231", "Balance": "31"
-            },
-            {
-                "UserId": "usr1", "Name": "Malay", "Phone": "31231231", "Balance": "31"
-            }
-        ];
-        // const {
-        //     amount, amountErrorLabel, amountError, saveDetailsEnable, date_match_modal
-        // } = this.state;
+
 
         return (
             <div className="max-width-in">
@@ -84,7 +78,6 @@ class Allwallets extends React.Component<any,
                                     ))}</>)
                                     : (<> <CircularProgress color="inherit" size={30} className="table-loader" /></>)
                                 }
-
                             </TableBody>
                         </Table>
                     </TableContainer>

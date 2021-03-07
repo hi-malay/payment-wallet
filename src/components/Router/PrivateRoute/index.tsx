@@ -1,26 +1,37 @@
 import { Card, CardContent } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Route,
-    Redirect
+    Redirect,
+    withRouter
 } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 import Drawer from "../../common/Drawer/Drawer";
 import "../../style.css"
 import { ContextMain } from "./../../common/Drawer/ContextMain"
 import axios from "axios"
 import { API } from '../../common/Drawer/constant';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
-export default function PrivateRoute(props: any) {
-    const [userData, setUserData] = React.useState({});
-    const [transData, setTransData] = React.useState({});
-    const [isDrawerOpen, setDrawer] = React.useState(false);
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const Privateroute = withRouter((props: any) => {
+    const [userData, setUserData] = useState([]);
+    const [transData, setTransData] = useState([]);
+    const [isValid, setIsValid] = useState(false);
+    const [isReferValid, setReferValid] = React.useState(false);
+
     const mainApi = () => {
-        axios.get(API.main_url).then((response: any) => {
+        axios.get(API.main_url, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`
+            },
+        }).then((response: any) => {
             if (response.data) {
                 setUserData(response.data.user)
-                console.log("byr2", response.data.user)
+                setIsValid(true)
+                console.log("byr2", userData)
+            }
+            else {
+                setReferValid(true)
             }
         }).catch((error: any) => {
             console.log("error", error)
@@ -29,7 +40,7 @@ export default function PrivateRoute(props: any) {
         axios.get(API.trans_url).then((response: any) => {
             if (response.data) {
                 setTransData(response.data.data)
-                console.log("byr", response.data.data)
+
             }
         }).catch((error: any) => {
             console.log("error", error)
@@ -39,28 +50,62 @@ export default function PrivateRoute(props: any) {
 
     useEffect(() => {
         mainApi()
-    }, [props.location.pathname])
+    }, [])
 
-    return (
-        <Route render={() =>
-            <div className="bg-grey full-len mt-3" >
-
-                <ContextMain.Provider value={userData}>
-                    <div className="max-width max-width-padd mt-4">
-                        <Card className="custom-card card-dashboard">
-                            <CardContent >
-                                <h2>{props.location.pathname.split("/")[1]}</h2>
-                                <div className="col-md-4">
-                                    <Drawer />
-                                </div>
-                                <div className="col-md-8 mt-5">
-                                    <props.component value={transData} />
-                                </div>
-                            </CardContent>
-                        </Card>
+    const validationDynamic = () => {
+        localStorage.removeItem("AuthToken");
+        props.history.push('/')
+    }
+    console.log("keysssbyr", isValid)
+    console.log("keysss", userData)
+    if (localStorage.getItem("AuthToken") != undefined && localStorage.getItem("AuthToken") != null) {
+        if (Object.keys(userData).length > 0) {
+            return (
+                <Route render={() =>
+                    <div className="bg-grey full-len mt-3" >
+                        <ContextMain.Provider value={userData}>
+                            <div className="max-width max-width-padd mt-4">
+                                <Card className="custom-card card-dashboard">
+                                    <CardContent >
+                                        <h2>{props.location.pathname.split("/")[1]}</h2>
+                                        <Button variant="contained" color="primary" className="btn-class mt-4" onClick={validationDynamic}>Logout</Button>
+                                        <div className="col-md-4">
+                                            <Drawer />
+                                        </div>
+                                        <div className="col-md-8 mt-5">
+                                            <props.component value={transData} />
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </ContextMain.Provider>
+                    </ div>} />
+            )
+        }
+        else {
+            if (isReferValid) {
+                return (
+                    <Redirect to={{
+                        pathname: `/`,
+                    }} />
+                )
+            } else {
+                return (
+                    <div className="Circular-Progress">
+                        <CircularProgress color="inherit" />
                     </div>
-                </ContextMain.Provider>
-            </ div>} />
-    )
+                )
+            }
+        }
+    }
+    else {
+        return (
+            <Redirect to={{
+                pathname: `/`,
+            }} />
+        )
+    }
 
-}
+
+})
+export default Privateroute;
