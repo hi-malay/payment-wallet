@@ -148,6 +148,14 @@ div.max-width.max-width-padd {
     display: none !important;
 }
 
+.login-style {
+    font-size: 16px;
+    color: rgb(102, 120, 226);
+    font-weight: bold;
+    font-style: italic;
+    cursor: pointer;
+}
+
 @media (max-width: 991px) {
     .drawer-visible-xs {
         display: inline-flex !important;

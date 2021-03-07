@@ -28,7 +28,8 @@ class PartnerReferral extends React.Component<any,
         passwordErrorLabel: string,
         saveDetailsEnable: boolean,
         date_match_modal: boolean,
-        action: string
+        action: string,
+        islogin: boolean
 
     }> {
     myRef: any;
@@ -54,13 +55,14 @@ class PartnerReferral extends React.Component<any,
             passwordErrorLabel: '',
             saveDetailsEnable: true,
             date_match_modal: false,
-            action: ""
+            action: "",
+            islogin: false
         }
 
     }
 
     validationDynamic = () => {
-        if (this.state.name === "") {
+        if (this.state.name === "" && this.state.islogin === false) {
             this.setState({ nameError: true, nameErrorLabel: PAGE_TWO_ERROR_TEXT.firstNameLabel, saveDetailsEnable: false })
             return;
         } else if (this.state.email === "") {
@@ -76,13 +78,24 @@ class PartnerReferral extends React.Component<any,
             "email": this.state.email,
             "password": this.state.password
         };
+        console.log("login", this.state.islogin)
+        if (!this.state.islogin) {
+            axios.post(API.signup_url, data).then((response: any) => {
+                localStorage.setItem("AuthToken", response.data.token)
+                this.setState({ action: "home" })
+            }).catch((error: any) => {
+                this.setState({ date_match_modal: true })
+            });
+        }
+        else {
+            axios.post(API.login_url, data).then((response: any) => {
+                localStorage.setItem("AuthToken", response.data.token)
+                this.setState({ action: "home" })
+            }).catch((error: any) => {
+                this.setState({ date_match_modal: true })
+            });
+        }
 
-        axios.post(API.signup_url, data).then((response: any) => {
-            localStorage.setItem("AuthToken", response.data.token)
-            this.setState({ action: "home" })
-        }).catch((error: any) => {
-            this.setState({ date_match_modal: true })
-        });
     }
 
 
@@ -105,12 +118,187 @@ class PartnerReferral extends React.Component<any,
         this.setState({ date_match_modal: false, name: "", email: "", password: "" })
     };
 
-    render() {
+    renderFormSign = () => {
         const { name,
             nameError, nameErrorLabel,
             email, emailError, emailErrorLabel,
             password, passwordErrorLabel, passwordError, saveDetailsEnable, date_match_modal
         } = this.state;
+
+        return (
+            <Card className="" variant="outlined">
+                <CardContent>
+                    <Typography variant="h5" component="h2" className="main-title mb-3">
+                        Obuhi Assignment
+         </Typography>
+
+                    <form noValidate autoComplete="off">
+                        <div className="row mt-3" >
+                            <div className="col-md-4 mt-3">
+                                <TextField id="standard-basic" label="Name"
+                                    value={name}
+                                    error={nameError}
+                                    helperText={nameErrorLabel}
+                                    type="text"
+                                    margin="normal"
+                                    variant="outlined"
+                                    className="custom-input"
+                                    //  disabled={isAccountDetailsDisabled}
+                                    name="name"
+                                    data-id="name"
+                                    onChange={(event) =>
+                                        this.handleInputChange(event, "name")
+                                    }
+
+                                />
+                            </div>
+                            <div className="col-md-4 mt-3">
+                                <TextField id="standard-basic" label="Email"
+                                    value={(email === null) ? ("") : (email)}
+                                    error={emailError}
+                                    helperText={emailErrorLabel}
+                                    type="text"
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    className="custom-input"
+                                    // disabled={isAccountDetailsDisabled}
+                                    name="email"
+                                    data-id="email"
+                                    onChange={(event) =>
+                                        this.handleInputChange(event, "email")
+                                    }
+                                />
+                            </div>
+                            <div className="col-md-4 mt-3">
+                                <TextField id="standard-basic" label="Password"
+                                    value={(password === null) ? ("") : (password)}
+                                    error={passwordError}
+                                    helperText={passwordErrorLabel}
+                                    type="password"
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    className="custom-input"
+                                    // disabled={isAccountDetailsDisabled}
+                                    name="password"
+                                    data-id="password"
+                                    onChange={(event) =>
+                                        this.handleInputChange(event, "password")
+                                    }
+                                />
+                            </div>
+                            <div className="col-md-4 mt-3">
+                                <Button variant="contained" color="primary" className={(saveDetailsEnable === true) ? ("btn-class mt-4") : ("btn-class-default mt-4")} onClick={() => this.validationDynamic()}>Sign Up</Button>
+                            </div>
+                            <div className="col-md-7 text-right mt-5">
+                                <p className="login-style" onClick={() => this.setState({ islogin: true })}>Already a member? Login</p>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">By: Malay Mishra</Button>
+                </CardActions>
+            </Card>
+        )
+    }
+
+    renderFormLog = () => {
+        const { name,
+            nameError, nameErrorLabel,
+            email, emailError, emailErrorLabel,
+            password, passwordErrorLabel, passwordError, saveDetailsEnable, date_match_modal
+        } = this.state;
+        return (
+            <Card className="" variant="outlined">
+                <CardContent>
+                    <Typography variant="h5" component="h2" className="main-title mb-3">
+                        Obuhi Assignment
+         </Typography>
+
+                    <form noValidate autoComplete="off">
+                        <div className="row mt-3" >
+                            <div className="col-md-4 mt-3">
+                                <TextField id="standard-basic" label="Email"
+                                    value={(email === null) ? ("") : (email)}
+                                    error={emailError}
+                                    helperText={emailErrorLabel}
+                                    type="text"
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    className="custom-input"
+                                    // disabled={isAccountDetailsDisabled}
+                                    name="email"
+                                    data-id="email"
+                                    onChange={(event) =>
+                                        this.handleInputChange(event, "email")
+                                    }
+                                />
+                            </div>
+                            <div className="col-md-4 mt-3">
+                                <TextField id="standard-basic" label="Password"
+                                    value={(password === null) ? ("") : (password)}
+                                    error={passwordError}
+                                    helperText={passwordErrorLabel}
+                                    type="password"
+                                    margin="normal"
+                                    variant="outlined"
+                                    fullWidth
+                                    className="custom-input"
+                                    // disabled={isAccountDetailsDisabled}
+                                    name="password"
+                                    data-id="password"
+                                    onChange={(event) =>
+                                        this.handleInputChange(event, "password")
+                                    }
+                                />
+                            </div>
+                            <div className="col-md-4 mt-3">
+
+                            </div>
+                            <div className="col-md-4 mt-3">
+                                <Button variant="contained" color="primary" className={(saveDetailsEnable === true) ? ("btn-class mt-4") : ("btn-class-default mt-4")} onClick={() => this.validationDynamic()}>Login</Button>
+                            </div>
+                            <div className="col-md-7 text-right mt-5">
+                                <p className="login-style" onClick={() => this.setState({ islogin: false })}>New Member? Sign Up</p>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </CardContent>
+                <CardActions>
+                    <Button size="small">By: Malay Mishra</Button>
+                </CardActions>
+            </Card>
+        )
+    }
+    renderDialog = () => {
+        const { date_match_modal
+        } = this.state;
+        return (
+            <Dialog
+                open={date_match_modal}
+                onClose={this.handleCloseSub}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description">
+                <h3 className="modal-title">Hi, </h3>
+                <h3 className="modal-subtitle">Wrong Credentials </h3>
+
+                <DialogActions>
+                    <Button onClick={this.handleCloseSub} color="primary">
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+    render() {
+
 
         if (this.state.action === 'home') {
             return (
@@ -122,96 +310,12 @@ class PartnerReferral extends React.Component<any,
 
         return (
             <div className="max-width-in">
-                <Card className="" variant="outlined">
-                    <CardContent>
-                        <Typography variant="h5" component="h2" className="main-title mb-3">
-                            Obuhi Assignment
-        </Typography>
+                {this.state.islogin
+                    ? <this.renderFormLog /> :
+                    <this.renderFormSign />
+                }
+                <this.renderDialog />
 
-
-                        <form noValidate autoComplete="off">
-                            <div className="row mt-3" >
-                                <div className="col-md-4 mt-3">
-                                    <TextField id="standard-basic" label="Name"
-                                        value={name}
-                                        error={nameError}
-                                        helperText={nameErrorLabel}
-                                        type="text"
-                                        margin="normal"
-                                        variant="outlined"
-                                        className="custom-input"
-                                        //  disabled={isAccountDetailsDisabled}
-                                        name="name"
-                                        data-id="name"
-                                        onChange={(event) =>
-                                            this.handleInputChange(event, "name")
-                                        }
-
-                                    />
-                                </div>
-                                <div className="col-md-4 mt-3">
-                                    <TextField id="standard-basic" label="Email"
-                                        value={(email === null) ? ("") : (email)}
-                                        error={emailError}
-                                        helperText={emailErrorLabel}
-                                        type="text"
-                                        margin="normal"
-                                        variant="outlined"
-                                        fullWidth
-                                        className="custom-input"
-                                        // disabled={isAccountDetailsDisabled}
-                                        name="email"
-                                        data-id="email"
-                                        onChange={(event) =>
-                                            this.handleInputChange(event, "email")
-                                        }
-                                    />
-                                </div>
-                                <div className="col-md-4 mt-3">
-                                    <TextField id="standard-basic" label="Password"
-                                        value={(password === null) ? ("") : (password)}
-                                        error={passwordError}
-                                        helperText={passwordErrorLabel}
-                                        type="password"
-                                        margin="normal"
-                                        variant="outlined"
-                                        fullWidth
-                                        className="custom-input"
-                                        // disabled={isAccountDetailsDisabled}
-                                        name="password"
-                                        data-id="password"
-                                        onChange={(event) =>
-                                            this.handleInputChange(event, "password")
-                                        }
-                                    />
-                                </div>
-                                <div className="col-md-4 mt-3">
-                                    <Button variant="contained" color="primary" className={(saveDetailsEnable === true) ? ("btn-class mt-4") : ("btn-class-default mt-4")} onClick={() => this.validationDynamic()}>Submit</Button>
-                                </div>
-
-                            </div>
-
-                        </form>
-                    </CardContent>
-                    <CardActions>
-                        <Button size="small">By: Malay Mishra</Button>
-                    </CardActions>
-                </Card>
-
-                <Dialog
-                    open={date_match_modal}
-                    onClose={this.handleCloseSub}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description">
-                    <h3 className="modal-title">Hi, </h3>
-                    <h3 className="modal-subtitle">Wrong Credentials </h3>
-
-                    <DialogActions>
-                        <Button onClick={this.handleCloseSub} color="primary">
-                            Close
-                            </Button>
-                    </DialogActions>
-                </Dialog>
             </div>
         );
     }

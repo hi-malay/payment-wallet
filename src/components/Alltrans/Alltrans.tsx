@@ -43,17 +43,6 @@ class Allwallets extends React.Component<any,
 
 
     render() {
-        const rows = [
-            {
-                "Name": "usr1", "Date": "Malay", "Amount": "31231231", "Balance": "31"
-            },
-            {
-                "Name": "usr1", "Date": "Malay", "Amount": "31231231", "Balance": "31"
-            }
-        ];
-        // const {
-        //     amount, amountErrorLabel, amountError, saveDetailsEnable, date_match_modal
-        // } = this.state;
 
         return (
             <div className="max-width-in">

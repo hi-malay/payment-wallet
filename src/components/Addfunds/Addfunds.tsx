@@ -81,8 +81,11 @@ class Addfunds extends React.Component<any,
         let data: any = {
             amount: this.state.amount
         }
-
-        axios.patch(API.add_funds + "/" + this.state.name, data).then((response: any) => {
+        axios.patch(API.add_funds + "/" + this.state.name, data, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`
+            },
+        }).then((response: any) => {
             console.log("ok")
         }).catch((error: any) => {
             console.log("error", error)

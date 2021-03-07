@@ -5,10 +5,9 @@ const userController = require('../controllers/user-controllers');
 const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
-
+router.use(checkAuth);
 router.get('/fullList', userController.getFullUser);
 router.get('/:pid', userController.getUserById);
-router.use(checkAuth);
 router.post(
     '/add',
     [
