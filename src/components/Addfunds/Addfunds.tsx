@@ -70,7 +70,7 @@ class Addfunds extends React.Component<any,
             return;
         }
 
-        const matchData = this.context.map((data: any) => {
+        const matchData = this.context.userData[0].map((data: any) => {
             if (data._id === this.state.name) {
                 return data.name
             }
@@ -130,8 +130,8 @@ class Addfunds extends React.Component<any,
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        {this.context.length !== undefined
-                                            ? this.context.map((row: any, i: any) => (
+                                        {this.context.userData[0].length !== undefined
+                                            ? this.context.userData[0].map((row: any, i: any) => (
                                                 <MenuItem value={row._id}>{row.name}</MenuItem>
                                             ))
                                             : (<CircularProgress color="inherit" size={30} className="table-loader" />)

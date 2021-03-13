@@ -50,7 +50,7 @@ const Privateroute = withRouter((props: any) => {
 
     useEffect(() => {
         mainApi()
-    }, [])
+    }, [props.location.pathname])
 
     const validationDynamic = () => {
         localStorage.removeItem("AuthToken");
@@ -63,7 +63,7 @@ const Privateroute = withRouter((props: any) => {
             return (
                 <Route render={() =>
                     <div className="bg-grey full-len mt-3" >
-                        <ContextMain.Provider value={userData}>
+                        <ContextMain.Provider value={{ userData: [userData, setUserData] }}>
                             <div className="max-width max-width-padd mt-4">
                                 <Card className="custom-card card-dashboard">
                                     <CardContent >
