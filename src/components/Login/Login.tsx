@@ -200,7 +200,8 @@ class PartnerReferral extends React.Component<any,
                     </form>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">By: Malay Mishra</Button>
+                    <Button size="small">By: Malay Mishra</Button><br />
+                    <Button size="small">{process.env.REACT_APP_ENV}</Button>
                 </CardActions>
             </Card>
         )
