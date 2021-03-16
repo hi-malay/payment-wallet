@@ -24,7 +24,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/paymentWallet')
+    .connect('mongodb+srv://malay:malaygo@cluster0.sxbnt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
     .then(() => {
         app.listen(5000);
     })

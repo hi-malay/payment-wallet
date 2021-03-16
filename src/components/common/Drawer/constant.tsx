@@ -18,5 +18,6 @@ export const API = {
     "add_user": HEAD_URL + "/api/user/add",
     "trans_url": "https://my-json-server.typicode.com/hi-malay/trans/db",
     "signup_url": HEAD_URL + "/api/auth/signup",
-    "login_url": HEAD_URL + "/api/auth/login"
+    "login_url": HEAD_URL + "/api/auth/login",
+    "auth_user": HEAD_URL + "/api/auth"
 }

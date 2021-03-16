@@ -129,7 +129,7 @@ class PartnerReferral extends React.Component<any,
             <Card className="" variant="outlined">
                 <CardContent>
                     <Typography variant="h5" component="h2" className="main-title mb-3">
-                        Obuhi Assignment
+                        Payment Wallet
          </Typography>
 
                     <form noValidate autoComplete="off">
