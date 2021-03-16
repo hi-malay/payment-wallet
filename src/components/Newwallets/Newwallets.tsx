@@ -70,7 +70,11 @@ class PartnerReferral extends React.Component<any,
             "amount": this.state.amount
         };
 
-        axios.post(API.add_user, data).then((response: any) => {
+        axios.post(API.add_user, data, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`
+            }
+        }).then((response: any) => {
             console.log("ok")
         }).catch((error: any) => {
             console.log("error", error)

@@ -15,6 +15,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Privateroute = withRouter((props: any) => {
     const [userData, setUserData] = useState([]);
+    const [userAuthData, setUserAuthData] = useState([]);
     const [transData, setTransData] = useState([]);
     const [isValid, setIsValid] = useState(false);
     const [isReferValid, setReferValid] = React.useState(false);
@@ -27,6 +28,17 @@ const Privateroute = withRouter((props: any) => {
         }).then((response: any) => {
             if (response.data) {
                 setUserData(response.data.user)
+                setIsValid(true)
+                console.log("byr2", userData)
+            }
+
+        }).catch((error: any) => {
+            console.log("error", error)
+        });
+
+        axios.get(API.auth_user).then((response: any) => {
+            if (response.data) {
+                setUserAuthData(response.data)
                 setIsValid(true)
                 console.log("byr2", userData)
             }
@@ -59,7 +71,7 @@ const Privateroute = withRouter((props: any) => {
     console.log("keysssbyr", isValid)
     console.log("keysss", userData)
     if (localStorage.getItem("AuthToken") != undefined && localStorage.getItem("AuthToken") != null) {
-        if (Object.keys(userData).length > 0) {
+        if (Object.keys(userAuthData).length > 0) {
             return (
                 <Route render={() =>
                     <div className="bg-grey full-len mt-3" >
