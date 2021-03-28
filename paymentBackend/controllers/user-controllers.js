@@ -3,11 +3,14 @@ const { validationResult } = require('express-validator');
 
 const HttpError = require('../models/http-error');
 const Users = require('../models/users');
+const Trans = require('../models/transactions');
 
 const getFullUser = async (req, res, next) => {
   let user;
+  let userMain
   try {
-    user = await Users.find();
+    userMain = await Users.find();
+    user = userMain.filter(data => data.creator == req.userData.userId)
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not find a Users.',
@@ -15,7 +18,10 @@ const getFullUser = async (req, res, next) => {
     );
     return next(error);
   }
-  await res.send({ user }); // => { user } => { user: user }
+
+  await res.send({ user });
+
+  // => { user } => { user: user }
 };
 
 const getUserById = async (req, res, next) => {
@@ -59,7 +65,7 @@ const createUser = async (req, res, next) => {
 
   // const title = req.body.title;
   const createdUser = new Users({
-    name, phone, amount
+    name, phone, amount, creator: req.userData.userId
   });
 
   try {
@@ -73,6 +79,36 @@ const createUser = async (req, res, next) => {
   }
 
   res.status(201).json({ users: createdUser });
+};
+
+
+const transaction = async (userId) => {
+  let user, trans
+  try {
+    user = await Users.findById(userId);
+    trans = await Trans.find();
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not update place.',
+      500
+    );
+    return next(error);
+  }
+
+  trans.name = user.name
+  // trans.date=user.updatedAt
+  // trans.amount=user.amount
+  trans.balance = user.amount
+  console.log("hiiii", trans)
+  try {
+    await trans.save();
+  } catch (err) {
+    const error = new HttpError(
+      'Something went wrong, could not update place.',
+      500
+    );
+    return next(error);
+  }
 };
 
 
@@ -101,6 +137,7 @@ const addFunds = async (req, res, next) => {
 
   try {
     await user.save();
+    transaction(userId)
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not update place.',
@@ -111,7 +148,6 @@ const addFunds = async (req, res, next) => {
 
   res.status(200).json({ user: user.toObject({ getters: true }) });
 };
-
 
 const spendFunds = async (req, res, next) => {
   const errors = validationResult(req);
@@ -138,6 +174,7 @@ const spendFunds = async (req, res, next) => {
 
   try {
     await user.save();
+    transaction(userId)
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not update place.',

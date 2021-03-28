@@ -130,7 +130,7 @@ class Addfunds extends React.Component<any,
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        {this.context.userData[0].length !== undefined
+                                        {this.context.userData[0]?.length !== undefined
                                             ? this.context.userData[0].map((row: any, i: any) => (
                                                 <MenuItem value={row._id}>{row.name}</MenuItem>
                                             ))

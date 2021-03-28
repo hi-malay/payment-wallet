@@ -66,7 +66,7 @@ class Allwallets extends React.Component<any,
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {this.context.userData[0].length !== undefined
+                                {this.context.userData[0]?.length !== undefined
                                     ? (<> {this.context.userData[0].map((row: any, i: any) => (
                                         <TableRow key={row._id}>
                                             <TableCell component="th" scope="row">
