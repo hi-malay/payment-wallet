@@ -86,7 +86,7 @@ const transaction = async (userId) => {
   let user, trans
   try {
     user = await Users.findById(userId);
-    trans = await Trans.find();
+
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not update place.',
@@ -94,14 +94,14 @@ const transaction = async (userId) => {
     );
     return next(error);
   }
+  const { name, data, amount } = user
+  const transUser = new Trans({
+    name, data, amount
+  });
 
-  trans.name = user.name
-  // trans.date=user.updatedAt
-  // trans.amount=user.amount
-  trans.balance = user.amount
-  console.log("hiiii", trans)
   try {
-    await trans.save();
+    console.log(ab, transUser)
+    await transUser.save();
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not update place.',

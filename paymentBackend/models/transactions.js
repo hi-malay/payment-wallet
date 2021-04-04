@@ -4,7 +4,6 @@ const transSchema = new mongoose.Schema({
     name: { type: String, required: true },
     date: { type: Number, required: true },
     amount: { type: Date, required: true },
-    balance: { type: Number, required: true }
 
 }, {
     timestamps: true,

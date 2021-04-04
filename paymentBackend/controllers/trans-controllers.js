@@ -5,11 +5,22 @@ const jwt = require('jsonwebtoken');
 const HttpError = require('../models/http-error');
 const Trans = require('../models/transactions');
 
-const getTrans = (req, res, next) => {
-    Trans.find()
-        .then(users => res.json(users))
-        .catch(err => res.status(400).json('Error: ' + err));
+const getTrans = async (req, res, next) => {
+    let trans;
 
+    try {
+        trans = await Trans.find();
+    } catch (err) {
+        const error = new HttpError(
+            'Something went wrong, could not find a Users.',
+            500
+        );
+        return next(error);
+    }
+    console.log("bb", trans)
+    await res.send({ trans });
+
+    // => { user } => { user: user }
 };
 
 exports.getTrans = getTrans;

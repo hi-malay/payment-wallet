@@ -16,6 +16,7 @@ import Spendfunds from "../Spendfunds/Spendfunds";
 import Addfunds from "../Addfunds/Addfunds";
 import Alltrans from "../Alltrans/Alltrans";
 import Login from "../Login/Login";
+import Charts from "../Charts/Charts"
 class CustomRouter extends React.Component<any, {
 
     isRedirect: boolean,
@@ -38,6 +39,7 @@ class CustomRouter extends React.Component<any, {
                     <PrivateRoute path="/add-funds" component={Addfunds} />
                     <PrivateRoute path="/spend-funds" component={Spendfunds} />
                     <PrivateRoute path="/all-trans" component={Alltrans} />
+                    <PrivateRoute path="/charts" component={Charts} />
                     <Route path="/" component={Login} />
                 </Switch>
             </Router>
