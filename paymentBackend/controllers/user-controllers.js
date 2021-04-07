@@ -8,6 +8,7 @@ const Trans = require('../models/transactions');
 const getFullUser = async (req, res, next) => {
   let user;
   let userMain
+  console.log("pp", req)
   try {
     userMain = await Users.find();
     user = userMain.filter(data => data.creator == req.userData.userId)

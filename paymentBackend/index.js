@@ -26,9 +26,16 @@ app.use((error, req, res, next) => {
 });
 
 mongoose
-    .connect('mongodb+srv://malay:malaygo@cluster0.sxbnt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+    .connect('mongodb+srv://malay:malaygo@cluster0.sxbnt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+    })
     .then(() => {
-        app.listen(5000);
+        const port = process.env.PORT || 5000;
+        app.listen(port, () => {
+            console.log(`Serve at http://localhost:${port}`);
+        });
     })
     .catch(err => {
         console.log(err);
