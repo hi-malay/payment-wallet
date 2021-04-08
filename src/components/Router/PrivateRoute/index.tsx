@@ -12,70 +12,23 @@ import { ContextMain } from "./../../common/Drawer/ContextMain"
 import axios from "axios"
 import { API } from '../../common/Drawer/constant';
 import CircularProgress from "@material-ui/core/CircularProgress";
+import CommonApi from "../../common/Drawer/commonApi"
 
 const Privateroute = withRouter((props: any) => {
-    const [userData, setUserData] = useState([]);
-    const [userAuthData, setUserAuthData] = useState([]);
-    const [transData, setTransData] = useState([]);
-    const [isValid, setIsValid] = useState(false);
-    const [isReferValid, setReferValid] = React.useState(false);
-
-    const mainApi = () => {
-        axios.get(API.main_url, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`
-            },
-        }).then((response: any) => {
-            if (response.data) {
-                setUserData(response.data.user)
-                setIsValid(true)
-                console.log("byr2", userData)
-            }
-
-        }).catch((error: any) => {
-            console.log("error", error)
-        });
-
-        axios.get(API.auth_user).then((response: any) => {
-            if (response.data) {
-                setUserAuthData(response.data)
-                setIsValid(true)
-                console.log("byr2", userData)
-            }
-            else {
-                setReferValid(true)
-            }
-        }).catch((error: any) => {
-            console.log("error", error)
-        });
-
-        axios.get(API.trans_url).then((response: any) => {
-            if (response.data) {
-                setTransData(response.data.data)
-
-            }
-        }).catch((error: any) => {
-            console.log("error", error)
-
-        });
-    }
-
-    useEffect(() => {
-        mainApi()
-    }, [props.location.pathname])
+    const state = CommonApi(props)
 
     const validationDynamic = () => {
         localStorage.removeItem("AuthToken");
         props.history.push('/')
     }
-    console.log("keysssbyr", isValid)
-    console.log("keysss", userData)
+    console.log("keysssbyr", state.isValid[0])
+    console.log("keysss", state.userData[0])
     if (localStorage.getItem("AuthToken") != undefined && localStorage.getItem("AuthToken") != null) {
-        if (Object.keys(userAuthData).length > 0) {
+        if (Object.keys(state.userAuthData[0]).length > 0) {
             return (
                 <Route render={() =>
                     <div className="bg-grey full-len mt-3" >
-                        <ContextMain.Provider value={{ userData: [userData, setUserData] }}>
+                        <ContextMain.Provider value={{ userData: [state.userData[0], "null"] }}>
                             <div className="max-width max-width-padd mt-4">
                                 <Card className="custom-card card-dashboard">
                                     <CardContent >
@@ -85,7 +38,7 @@ const Privateroute = withRouter((props: any) => {
                                             <Drawer />
                                         </div>
                                         <div className="col-md-8 mt-5">
-                                            <props.component value={transData} />
+                                            <props.component value={state.transData[0]} />
                                         </div>
                                     </CardContent>
                                 </Card>
@@ -95,7 +48,7 @@ const Privateroute = withRouter((props: any) => {
             )
         }
         else {
-            if (isReferValid) {
+            if (state.isReferValid[0]) {
                 return (
                     <Redirect to={{
                         pathname: `/`,

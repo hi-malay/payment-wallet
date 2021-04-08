@@ -47,7 +47,7 @@ class Allwallets extends React.Component<any,
         return (
             <div className="max-width-in">
                 <>
-                    {console.log("hii", this.context.userData[0])}
+
                     <TableContainer component={Paper}>
                         <Table className="" aria-label="simple table">
                             <TableHead>
