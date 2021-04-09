@@ -1,5 +1,5 @@
 
-const HEAD_URL = "http://localhost:5000"
+const HEAD_URL = process.env.REACT_APP_URL
 export const PAGE_TWO_ERROR_TEXT = {
     'firstNameLabel': "Invalid First Name.",
     'amountLabel': "Invalid Company Name.",
