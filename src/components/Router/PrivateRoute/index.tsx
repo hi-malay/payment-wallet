@@ -21,14 +21,15 @@ const Privateroute = withRouter((props: any) => {
         localStorage.removeItem("AuthToken");
         props.history.push('/')
     }
-    console.log("keysssbyr", state.isValid[0])
+
+    console.log("pp", state.isValid[1])
     console.log("keysss", state.userData[0])
     if (localStorage.getItem("AuthToken") != undefined && localStorage.getItem("AuthToken") != null) {
         if (Object.keys(state.userAuthData[0]).length > 0) {
             return (
                 <Route render={() =>
                     <div className="bg-grey full-len mt-3" >
-                        <ContextMain.Provider value={{ userData: [state.userData[0], "null"] }}>
+                        <ContextMain.Provider value={state}>
                             <div className="max-width max-width-padd mt-4">
                                 <Card className="custom-card card-dashboard">
                                     <CardContent >

@@ -44,7 +44,7 @@ class Allwallets extends React.Component<any,
 
     componentDidMount = () => {
         this.setState({ refDet: this.context.userData[0] })
-        //console.log("context", this.context.userData[0].userData[0])
+
     }
 
     render() {
@@ -53,7 +53,7 @@ class Allwallets extends React.Component<any,
         return (
             <div className="max-width-in">
                 <>
-                    {console.log("hii", this.context.userData[0])}
+
                     <TableContainer component={Paper}>
                         <Table className="" aria-label="simple table">
                             <TableHead>
