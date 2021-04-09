@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "603cab9ee20877757715f6f4"
+  },
+  "name": "Avinash",
+  "phone": 8107680129,
+  "amount": 4216,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603cabdce20877757715f6f5"
+  },
+  "name": "Shrawani Yadav",
+  "phone": 8132680129,
+  "amount": -1002,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603cad91fde3257688344195"
+  },
+  "name": "Ankita Yadav",
+  "phone": 8212680129,
+  "amount": 2215,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603cf35c5a5a96a43278698c"
+  },
+  "name": "Malay",
+  "phone": 8107680129,
+  "amount": 2131,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603cf6aa5a5a96a43278698d"
+  },
+  "name": "Abinaya",
+  "phone": 9483842323,
+  "amount": 3456,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "603cf6fb5a5a96a43278698e"
+  },
+  "name": "Gaurav",
+  "phone": 8107680122,
+  "amount": 8900,
+  "__v": 0
+}]
