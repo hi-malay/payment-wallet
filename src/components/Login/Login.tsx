@@ -124,7 +124,7 @@ class PartnerReferral extends React.Component<any,
             email, emailError, emailErrorLabel,
             password, passwordErrorLabel, passwordError, saveDetailsEnable, date_match_modal
         } = this.state;
-
+        console.log("process", process.env)
         return (
             <Card className="" variant="outlined">
                 <CardContent>
