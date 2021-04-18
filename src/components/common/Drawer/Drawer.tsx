@@ -164,6 +164,14 @@ function ResponsiveDrawer(props: any) {
                         </ListItem>
                     </div>
                 </Link>
+                <Link to={`/charts`} className="click-history">
+                    <div onClick={() => changeDrawer("6")}>
+                        <ListItem button className={(select === 6) ? "active" : ''}>
+                            <ListItemIcon> <ArrowRightIcon /></ListItemIcon>
+                            <ListItemText primary={"Charts"} />
+                        </ListItem>
+                    </div>
+                </Link>
 
             </List>
 
