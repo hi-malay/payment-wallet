@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import { ContextMain } from "./../common/Drawer/ContextMain"
+import ReactGA from 'react-ga'
+
 
 class Charts extends React.Component<any,
     {
@@ -21,6 +23,14 @@ class Charts extends React.Component<any,
         const amount = this.context.userData[0].map((data: any) => data.amount)
         const name = this.context.userData[0].map((data: any) => data.name)
         this.setState({ name, amount })
+
+        ReactGA.set({ page: '/Chart' })
+        ReactGA.pageview('/Chart');
+        ReactGA.event({
+            category: `Chart Cicked`,
+            action: 'Chart Cicked',
+            label: 'Chart Cicked'
+        });
     }
 
     render() {

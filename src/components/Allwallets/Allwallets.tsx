@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { ContextMain } from "./../common/Drawer/ContextMain"
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ReactGA from 'react-ga'
+
 
 class Allwallets extends React.Component<any,
     {
@@ -44,7 +46,13 @@ class Allwallets extends React.Component<any,
 
     componentDidMount = () => {
         this.setState({ refDet: this.context.userData[0] })
-
+        ReactGA.set({ page: '/AllWallet' })
+        ReactGA.pageview('/Allwallet');
+        ReactGA.event({
+            category: `Page`,
+            action: 'Logged In',
+            label: 'All Wallet Rendered'
+        });
     }
 
     render() {

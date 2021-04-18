@@ -14,6 +14,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
 import Typography from '@material-ui/core/Typography';
+import ReactGA from 'react-ga'
 
 class PartnerReferral extends React.Component<any,
     {
@@ -80,6 +81,11 @@ class PartnerReferral extends React.Component<any,
         };
         console.log("login", this.state.islogin)
         if (!this.state.islogin) {
+            ReactGA.event({
+                category: `Sign Up clicked`,
+                action: 'Sign Up clicked',
+                label: 'Sign Up clicked'
+            });
             axios.post(API.signup_url, data).then((response: any) => {
                 localStorage.setItem("AuthToken", response.data.token)
                 this.setState({ action: "home" })
@@ -88,6 +94,11 @@ class PartnerReferral extends React.Component<any,
             });
         }
         else {
+            ReactGA.event({
+                category: `Login clicked`,
+                action: 'Login clicked',
+                label: 'Login clicked renders'
+            });
             axios.post(API.login_url, data).then((response: any) => {
                 localStorage.setItem("AuthToken", response.data.token)
                 this.setState({ action: "home" })
@@ -97,7 +108,15 @@ class PartnerReferral extends React.Component<any,
         }
 
     }
-
+    componentDidMount = () => {
+        ReactGA.set({ page: '/login' })
+        ReactGA.pageview('/login');
+        ReactGA.event({
+            category: `Page`,
+            action: 'Login',
+            label: 'Login Rendered'
+        });
+    }
 
     handleInputChange = (event: any, key: any) => {
         const value: any = event.target.value;
@@ -217,7 +236,7 @@ class PartnerReferral extends React.Component<any,
             <Card className="" variant="outlined">
                 <CardContent>
                     <Typography variant="h5" component="h2" className="main-title mb-3">
-                        Obuhi Assignment
+                        Payment Wallet
          </Typography>
 
                     <form noValidate autoComplete="off">

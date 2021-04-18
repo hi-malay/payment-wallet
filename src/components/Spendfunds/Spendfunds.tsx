@@ -16,6 +16,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { ContextMain } from "./../common/Drawer/ContextMain"
 import axios from "axios"
 import { API } from './../common/Drawer/constant';
+import ReactGA from 'react-ga'
 
 class SpendFunds extends React.Component<any,
     {
@@ -81,7 +82,11 @@ class SpendFunds extends React.Component<any,
         let data: any = {
             amount: this.state.amount
         }
-
+        ReactGA.event({
+            category: `Spend Funds Clicked`,
+            action: 'Spend Funds Clicked',
+            label: 'Spend Funds Clicked'
+        });
         axios.patch(API.spend_funds + "/" + this.state.name, data, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`

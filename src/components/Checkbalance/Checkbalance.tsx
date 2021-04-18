@@ -12,6 +12,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { ContextMain } from "./../common/Drawer/ContextMain"
+import ReactGA from 'react-ga';
+
 
 class Checkbalance extends React.Component<any,
     {
@@ -65,10 +67,16 @@ class Checkbalance extends React.Component<any,
             }
             return null
         })
+        ReactGA.event({
+            category: `Check Balance Clicked`,
+            action: 'Check Balance Clicked',
+            label: 'Check Balance Clicked'
+        });
         this.setState({ matchData: matchData, date_match_modal: true })
     }
 
     render() {
+
         console.log("hi", localStorage.getItem('AuthToken'))
         return (
             <div className="check-funds">

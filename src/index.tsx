@@ -4,7 +4,11 @@ import './index.css';
 import App from './App';
 import './bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
+import ReactGA from 'react-ga';
 
+const key: any = process.env.REACT_APP_GA;
+ReactGA.initialize("UA-194888640-1");
+ReactGA.pageview(window.location.pathname + window.location.search);
 ReactDOM.render(
   <React.StrictMode>
     <App />
