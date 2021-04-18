@@ -8,6 +8,7 @@ import { PAGE_TWO_ERROR_TEXT } from './../common/Drawer/constant';
 import { isMobileValidNumber } from './../common/Drawer/Helperfunction';
 import axios from "axios"
 import { API } from './../common/Drawer/constant';
+import ReactGA from 'react-ga';
 
 class PartnerReferral extends React.Component<any,
     {
@@ -70,6 +71,11 @@ class PartnerReferral extends React.Component<any,
             "amount": this.state.amount
         };
 
+        ReactGA.event({
+            category: `New Wallet Added`,
+            action: 'New Wallet Added',
+            label: 'New Wallet Added'
+        });
         axios.post(API.add_user, data, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`
@@ -107,6 +113,7 @@ class PartnerReferral extends React.Component<any,
             mobileNumber, mobileNumberError, mobileNumberErrorLabel,
             amount, amountErrorLabel, amountError, saveDetailsEnable, date_match_modal
         } = this.state;
+
 
         return (
             <div className="max-width-in">
